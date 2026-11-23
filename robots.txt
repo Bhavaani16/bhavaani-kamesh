@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://bhavaani16.github.io/bhavaani-kamesh/sitemap.xml

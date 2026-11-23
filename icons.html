@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Icon drawer — Bhavaani Kamesh</title>
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="css/fonts.css">
+  <link rel="stylesheet" href="css/styles.css">
+  <style>
+    .sheet-page { padding: 2rem var(--pad) 4rem; }
+    .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)); gap: 0.8rem; }
+    .cell { background: var(--paper-3); border: 1px solid var(--line); border-radius: 1rem; padding: 0.8rem; text-align: center; }
+    .cell .ico { width: 3rem; height: 3rem; margin: 0 auto 0.4rem; }
+    .cell figcaption { font-family: var(--mono); font-size: 0.68rem; color: var(--muted); word-break: break-word; }
+    .cell:hover .ico { transform: rotate(-8deg) scale(1.08); }
+  </style>
+</head>
+<body>
+  <a class="skip" href="#grid">Skip to icons</a>
+  <header class="nav"><a class="brand" href="index.html">Back to the desk</a></header>
+  <main class="sheet-page">
+    <p class="kicker">One stroke weight. One accent. No borrowed set.</p>
+    <h1 style="font-size:clamp(2.6rem,6vw,4.4rem);margin-bottom:0.4rem">The icon drawer</h1>
+    <p>These are the same drawings as the inline icons on the site. Files live in <code>icons/</code> if you want to reuse one.</p>
+    <div class="grid" id="grid"></div>
+  </main>
+  <script src="js/icons.js"></script>
+  <script>
+    var grid = document.getElementById("grid");
+    Object.keys(window.ICONS).forEach(function (name) {
+      var fig = document.createElement("figure");
+      fig.className = "cell";
+      fig.innerHTML = window.ICONS[name] + "<figcaption>" + name + "</figcaption>";
+      grid.appendChild(fig);
+    });
+  </script>
+</body>
+</html>

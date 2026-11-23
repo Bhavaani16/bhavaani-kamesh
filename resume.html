@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Bhavaani Kamesh — Resume</title>
+  <link rel="stylesheet" href="css/fonts.css">
+  <link rel="stylesheet" href="css/resume.css">
+</head>
+<body>
+  <p class="print-bar"><a href="index.html">Back to the desk</a> · <button type="button" onclick="print()">Print or save as PDF</button> · This page is generated from js/content.js so it stays in step with the site.</p>
+  <article class="page" id="resume"></article>
+  <script src="js/content.js"></script>
+  <script>
+    var S = window.SITE;
+    function e(s){return String(s).replace(/[&<>]/g,function(c){return {"&":"&amp;","<":"&lt;",">":"&gt;"}[c];});}
+    var jobs = S.experience.map(function(r){
+      var items = r.resume || r.bullets;
+      return '<section><div class="row"><strong>'+e(r.title)+', '+e(r.org)+'</strong><span>'+e(r.when)+'</span></div>'+
+        '<div class="where">'+e(r.place)+'</div><ul>'+items.map(function(b){return '<li>'+e(b)+'</li>';}).join('')+'</ul></section>';
+    }).join('');
+    var schools = [
+      ['M.S., Information Systems, GPA 3.5', 'California State University, Long Beach', 'Aug 2025 – May 2027', 'Long Beach, California'],
+      ['B.E., Computer Science, 9.2/10', 'GSSS Institute of Engineering and Technology for Women (VTU)', '2020 – 2024', 'Mysuru, India'],
+      ['Aspire Leaders Program, Cohort 4', 'Aspire Institute', 'Oct 2026 – present', 'Curriculum designed by faculty from Harvard, MIT, LSE, and Oxford']
+    ].map(function(ed){
+      return '<div class="row"><strong>'+e(ed[0])+', '+e(ed[1])+'</strong><span>'+e(ed[2])+'</span></div><div class="where">'+e(ed[3])+'</div>';
+    }).join('');
+    var skills = S.skills.map(function(g){
+      return '<strong>'+e(g.name)+':</strong> '+g.items.map(function(i){return e(i[0]);}).join(', ');
+    }).join('. ') + '.';
+    document.getElementById('resume').innerHTML =
+      '<header><h1>'+e(S.name)+'</h1><p class="contact">'+e(S.location)+' · <a href="mailto:'+e(S.email)+'">'+e(S.email)+'</a>'+
+      ' · <a href="'+e(S.links.linkedin)+'">LinkedIn</a> · <a href="'+e(S.links.github)+'">GitHub</a></p>'+
+      '<p>I build AI systems that have to show their work before anything is allowed to move. M.S. Information Systems at CSU Long Beach. Previously an associate product manager at Honeywell Aerospace and a software engineering intern at Dell.</p></header>'+
+      '<h2>Experience</h2>'+jobs+
+      '<h2>Selected work</h2><ul>'+
+      '<li>ClauseGuard. Multi-agent RAG over 12 SEC 10-Ks with a citation verifier and a 159-case golden set. github.com/Bhavaani16/ClauseGuard</li>'+
+      '<li>EDRAY import-arrival forecast. 1st of 10 teams. XGBoost, 1.89-day MAE at terminal egress and 3.67 days at the vessel stage on the published evaluation. Dataset of 439,919 records.</li>'+
+      '<li>GridPulse. MILP schedule for compute, cooling, and EV charging. Human approval by SMS. Savings figures are simulated and labeled as such.</li>'+
+      '<li>Ask Your Data. Plain-English to SQL for product managers, restricted to a single SELECT.</li>'+
+      '<li>Instagram reel queue prototype. Consecutive DM reels play as one queue and stop at the first text message. Live demo and write-up on Medium.</li>'+
+      '</ul>'+
+      '<h2>Education</h2>'+schools+
+      '<p class="where">Coursework includes '+S.coursework.map(e).join(', ')+'.</p>'+
+      '<h2>Honors</h2><ul>'+S.honors.map(function(h){return '<li>'+e(h.title)+'. '+e(h.detail)+'</li>';}).join('')+'</ul>'+
+      '<h2>Skills</h2><p class="tools">'+skills+'</p>';
+  </script>
+</body>
+</html>
